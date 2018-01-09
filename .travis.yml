@@ -1,0 +1,18 @@
+language: csharp
+solution: "./lab1/lab1.sln"
+mono: none
+dotnet: 2.0.0
+build: trusty
+notifications:
+  email: false
+jobs:
+  include:
+  - stage: build
+    script: dotnet build "./lab1"
+  - stage: test
+    script: dotnet test "./lab1.Tests"
+  - stage: deploy
+    script: skip
+    deploy:
+        provider: heroku
+        verbose: true
